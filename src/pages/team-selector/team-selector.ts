@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '..'
-import Teams from './teams'
+
+import Teams, {Team} from './teams'
 
 /**
  * Generated class for the TeamSelectorPage page.
@@ -16,7 +17,7 @@ import Teams from './teams'
 })
 export class TeamSelectorPage {
 
-  public teams = Teams;
+  public teams: Team[] = Teams;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -25,7 +26,7 @@ export class TeamSelectorPage {
     console.log('ionViewDidLoad TeamSelectorPage');
   }
 
-  selectTeam($event, team) {
+  selectTeam($event, team: Team) {
     this.navCtrl.setRoot(TabsPage, team);
   }
 

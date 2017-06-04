@@ -5,8 +5,23 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Zach's awesome new baseball app!</h2>
+  <h2>Welcome to Devyn's awesome new baseball app!</h2>
   <p>
     You picked the {{team.name}}
   </p>
+
+
+  <button ion-button (click)="getTodaysGames()">
+    Get current scores
+  </button>
+
+  <ul>
+    <li *ngFor="let game of todaysGames">
+      <p>
+        {{game.home.team}} {{(game.home.won ? 'beat' : 'lost to')}} 
+        {{game.away.team}} at home today with a score of {{game.home.score}}
+        to {{game.away.score}}.
+      </p>
+    </li>
+  </ul>
 </ion-content>
