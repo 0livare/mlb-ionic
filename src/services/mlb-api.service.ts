@@ -47,6 +47,7 @@ export class MlbApi {
       .map((res) => {
         let encoded = res.text();
         let entries = encoded.replace(/%20/g, ' ').split('&');
+        
         let games = parseDataLabels(entries);
         return parseDataValues(games);
       });
@@ -159,8 +160,29 @@ export class MlbApi {
         }
       }
   }
+
+
+   // Can also manipulate this url to get a fuckton of data about all the games played on any particular day 
+  // http://gd2.mlb.com/components/game/mlb/year_2017/month_05/day_29/master_scoreboard.json
+  getGamesOnDate(date: Date) : Observable<any> {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1; // January is 0!
+    let day = date.getDate();
+
+    let monthStr = month.toString();
+    if (month < 10) monthStr = "0" + monthStr;
+
+    let dayStr = day.toString();
+    if (day < 10) dayStr = "0" + dayStr;
+
+    let baseUrl = 'http://gd2.mlb.com/components/game/mlb';
+    let path = `/year_${year}/month_${monthStr}/day_${dayStr}/master_scoreboard.json`;
+    console.log(baseUrl + path);
+
+    return this.http.get(baseUrl + path)
+      .map((res) => {
+        return res.json().data.games.game;
+      });
+  }
+
 }
-
-
- // Can also manipulate this url to get a fuckton of data
- // http://gd2.mlb.com/components/game/mlb/year_2017/month_05/day_29/master_scoreboard.json

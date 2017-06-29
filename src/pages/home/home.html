@@ -24,4 +24,13 @@
       </p>
     </li>
   </ul>
+
+  <h1>Next 10 games</h1>
+  <ul>
+    <li *ngFor="let game of nextTenGames">
+      <p>
+        {{game}}.
+      </p>
+    </li>
+  </ul>
 </ion-content>

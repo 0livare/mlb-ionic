@@ -1,8 +1,4 @@
-interface Team {
-  name: string;
-  city: string;
-  iconUrl: URL;
-}
+import { Team } from '../../interfaces'
 
 var mlb = {
   al: {
@@ -52,5 +48,5 @@ for (var league of leagueOptions) {
 }
 
 
-export { mlb, Team };
+export { mlb };
 export default teams;
